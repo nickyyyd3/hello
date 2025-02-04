@@ -7,13 +7,14 @@
 
 /* Variables */
 :root {
-    --primary-color: #fbbf24;
-    --primary-dark: #f59e0b;
+    --primary-color: #FFD700;
+    --primary-dark: #FFC700;
     --secondary-color: #1a202c;
     --text-light: #ffffff;
     --text-dark: #333333;
     --gray-light: #f3f4f6;
     --gray-dark: #2d3748;
+    --accent-color: #FF4B4B;
     --spacing-sm: 0.5rem;
     --spacing-md: 1rem;
     --spacing-lg: 2rem;
@@ -36,9 +37,10 @@ body {
 
 /* Navigation */
 nav {
-    background-color: var(--secondary-color);
-    color: var(--text-light);
+    background-color: var(--text-light);
+    color: var(--secondary-color);
     padding: var(--spacing-md) 0;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 .nav-content {
@@ -54,19 +56,20 @@ nav {
 }
 
 .nav-links a {
-    color: var(--text-light);
+    color: var(--secondary-color);
     text-decoration: none;
     transition: var(--transition);
+    font-weight: 500;
 }
 
 .nav-links a:hover {
-    color: var(--primary-color);
+    color: var(--primary-dark);
 }
 
 /* Hero Section */
 .hero-section {
-    background-image: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)), 
-                      url('https://images.unsplash.com/photo-1541976590-713941681591');
+    background-image: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), 
+                      url('https://pub-212f528548854f7c9ffe48bae2eee3e7.r2.dev/AdobeStock_356532197.jpeg');
     background-size: cover;
     background-position: center;
     color: var(--text-light);
@@ -181,8 +184,17 @@ nav {
 }
 
 .service-icon {
-    font-size: 3rem;
+    font-size: 2.5rem;
     margin-bottom: var(--spacing-lg);
+    background-color: var(--primary-color);
+    color: var(--secondary-color);
+    width: 80px;
+    height: 80px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
 .service-card h3 {
@@ -206,7 +218,7 @@ nav {
     content: "→";
     position: absolute;
     left: 0;
-    color: var(--primary-color);
+    color: var(--accent-color);
 }
 
 /* Projects Section */
@@ -243,13 +255,75 @@ nav {
 /* Contact Section */
 .contact {
     padding: var(--spacing-xl) 0;
-    background-color: var(--secondary-color);
-    color: var(--text-light);
+    background-color: var(--gray-light);
 }
 
+.contact h2 {
+    text-align: center;
+    margin-bottom: var(--spacing-lg);
+}
+
+.contact-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--spacing-xl);
+    margin-bottom: var(--spacing-xl);
+}
+
+.contact-info {
+    background-color: var(--text-light);
+    padding: var(--spacing-lg);
+    border-radius: 0.5rem;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.contact-details {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-lg);
+}
+
+.contact-item {
+    text-align: left;
+}
+
+.contact-item h3 {
+    color: var(--secondary-color);
+    margin-bottom: var(--spacing-md);
+    font-size: 1.25rem;
+}
+
+.contact-item p {
+    margin-bottom: var(--spacing-md);
+    line-height: 1.8;
+}
+
+.contact-item a {
+    color: var(--accent-color);
+    text-decoration: none;
+    transition: var(--transition);
+}
+
+.contact-item a:hover {
+    color: var(--primary-color);
+}
+
+.contact-map {
+    height: 100%;
+    min-height: 400px;
+    border-radius: 0.5rem;
+    overflow: hidden;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Contact Form */
 .contact-form {
     max-width: 600px;
     margin: 0 auto;
+    background-color: var(--text-light);
+    padding: var(--spacing-xl);
+    border-radius: 0.5rem;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 .form-group {
@@ -259,24 +333,28 @@ nav {
 .form-group label {
     display: block;
     margin-bottom: var(--spacing-sm);
+    color: var(--text-dark);
+    font-weight: bold;
 }
 
 .form-group input,
+.form-group select,
 .form-group textarea {
     width: 100%;
-    background-color: rgba(255, 255, 255, 0.05);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    color: var(--text-light);
+    background-color: var(--gray-light);
+    border: 1px solid #ddd;
+    color: var(--text-dark);
     padding: var(--spacing-md);
     border-radius: 0.5rem;
     transition: var(--transition);
 }
 
 .form-group input:focus,
+.form-group select:focus,
 .form-group textarea:focus {
-    background-color: rgba(255, 255, 255, 0.1);
     border-color: var(--primary-color);
     outline: none;
+    box-shadow: 0 0 0 2px rgba(255, 215, 0, 0.2);
 }
 
 .form-group textarea {
@@ -284,12 +362,104 @@ nav {
     resize: vertical;
 }
 
+/* Responsive adjustments for contact section */
+@media (max-width: 768px) {
+    .contact-container {
+        grid-template-columns: 1fr;
+    }
+
+    .contact-map {
+        min-height: 300px;
+    }
+}
+
 /* Footer */
 footer {
-    background-color: var(--gray-dark);
+    background-color: var(--secondary-color);
     color: var(--text-light);
-    padding: var(--spacing-lg) 0;
+    padding: var(--spacing-xl) 0 var(--spacing-lg);
+}
+
+.footer-content {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: var(--spacing-xl);
+    padding-bottom: var(--spacing-xl);
+    margin-bottom: var(--spacing-xl);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.footer-info h3 {
+    color: var(--primary-color);
+    font-size: 1.5rem;
+    margin-bottom: var(--spacing-md);
+}
+
+.footer-info p {
+    margin-bottom: var(--spacing-sm);
+    opacity: 0.9;
+}
+
+.footer-info .address {
+    margin-top: var(--spacing-lg);
+}
+
+.footer-contact h4,
+.footer-links h4 {
+    color: var(--primary-color);
+    margin-bottom: var(--spacing-lg);
+    font-size: 1.2rem;
+}
+
+.footer-contact p {
+    margin-bottom: var(--spacing-md);
+}
+
+.footer-contact a,
+.footer-links a {
+    color: var(--text-light);
+    text-decoration: none;
+    transition: var(--transition);
+    opacity: 0.9;
+}
+
+.footer-contact a:hover,
+.footer-links a:hover {
+    color: var(--primary-color);
+    opacity: 1;
+}
+
+.footer-links ul {
+    list-style: none;
+}
+
+.footer-links li {
+    margin-bottom: var(--spacing-md);
+}
+
+.footer-bottom {
     text-align: center;
+    opacity: 0.7;
+    font-size: 0.9rem;
+}
+
+/* Responsive footer adjustments */
+@media (max-width: 768px) {
+    .footer-content {
+        gap: var(--spacing-xl);
+        text-align: center;
+    }
+
+    .footer-links ul {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: var(--spacing-lg);
+    }
+
+    .footer-links li {
+        margin-bottom: 0;
+    }
 }
 
 /* Responsive Design */
